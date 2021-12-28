@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32002.261
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqlSugar", "SqlSugar\SqlSugar.csproj", "{489BB790-226C-4FAD-8D1E-51D72A7FF8E5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infoearth.Framework.SqlWinform", "Infoearth.Framework.SqlWinform\Infoearth.Framework.SqlWinform.csproj", "{4296CF2D-2FB6-40A7-8EAA-89AA4A79AB23}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{489BB790-226C-4FAD-8D1E-51D72A7FF8E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{489BB790-226C-4FAD-8D1E-51D72A7FF8E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{489BB790-226C-4FAD-8D1E-51D72A7FF8E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{489BB790-226C-4FAD-8D1E-51D72A7FF8E5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4296CF2D-2FB6-40A7-8EAA-89AA4A79AB23}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4296CF2D-2FB6-40A7-8EAA-89AA4A79AB23}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4296CF2D-2FB6-40A7-8EAA-89AA4A79AB23}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4296CF2D-2FB6-40A7-8EAA-89AA4A79AB23}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FCB5D07B-A4F0-429D-95AF-69C41747B8F9}
+	EndGlobalSection
+EndGlobal
