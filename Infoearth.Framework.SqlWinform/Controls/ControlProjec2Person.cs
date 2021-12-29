@@ -164,11 +164,11 @@ namespace Infoearth.Framework.SqlWinform.Controls
                 {
                     int personNum = new Random(Guid.NewGuid().GetHashCode()).Next((int)numericUpDown1.Value, (int)numericUpDown2.Value + 1);
                     /*机选分配规则
-
-                    1.优先选择分配次数少的人员
-                    2.不选择本次主要奖金的获取人员
-                    3.抽取人员的科室尽量是本项目主要负责部门的人员
-
+                    1.不选择本次主要奖金的获取人员
+                    2.优先选择分配次数少的人员
+                    3.均衡分配高中低普惠系数的人员
+                    4.普惠人员的最高金额不能高于主要人员的最低金额
+                    5.抽取人员的科室尽量是本项目主要负责部门的人员
                    */
                     var pCount = _p2pManager.CurrentDb.AsQueryable().Where(t => t.allot == allotEnum.普惠).GroupBy(t => t.peid).Select(t => new PersonSelector() { id = t.peid, times = SqlSugar.SqlFunc.AggregateCount(t), money = SqlSugar.SqlFunc.AggregateSum(t.money) }).ToList().ToDictionary(t => t.id);
 
@@ -293,7 +293,6 @@ namespace Infoearth.Framework.SqlWinform.Controls
 
             IniGrids();
             IniSummary();
-            //MessageBox.Show("分配完成");
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)

@@ -37,7 +37,7 @@ namespace Infoearth.Framework.SqlWinform.extention
                     return;
                 var current = datas[e.RowIndex];
 
-                bool success = new DbContext<T>().CurrentDb.Update(current);
+                bool success = new DbContext<T>().Update(current);
 
                 if (!success)
                 {
