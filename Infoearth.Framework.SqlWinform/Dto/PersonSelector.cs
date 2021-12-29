@@ -12,6 +12,8 @@ namespace Infoearth.Framework.SqlWinform.Dto
 
         public string room { get; set; }
 
+        public double delta { get; set; }
+
         public int times { get; set; }
 
         public int money { get; set; }

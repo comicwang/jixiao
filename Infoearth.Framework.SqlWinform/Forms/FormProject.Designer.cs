@@ -64,7 +64,7 @@ namespace Infoearth.Framework.SqlWinform.Forms
             // txtName
             // 
             this.txtName.Location = new System.Drawing.Point(128, 18);
-            this.txtName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtName.Margin = new System.Windows.Forms.Padding(4);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(708, 25);
             this.txtName.TabIndex = 1;
@@ -72,17 +72,18 @@ namespace Infoearth.Framework.SqlWinform.Forms
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(737, 474);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(100, 29);
             this.button1.TabIndex = 16;
             this.button1.Text = "关闭";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // btnOk
             // 
             this.btnOk.Location = new System.Drawing.Point(617, 474);
-            this.btnOk.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnOk.Margin = new System.Windows.Forms.Padding(4);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(100, 29);
             this.btnOk.TabIndex = 17;
@@ -102,7 +103,7 @@ namespace Infoearth.Framework.SqlWinform.Forms
             // txtRemark
             // 
             this.txtRemark.Location = new System.Drawing.Point(45, 259);
-            this.txtRemark.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtRemark.Margin = new System.Windows.Forms.Padding(4);
             this.txtRemark.Multiline = true;
             this.txtRemark.Name = "txtRemark";
             this.txtRemark.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -112,7 +113,7 @@ namespace Infoearth.Framework.SqlWinform.Forms
             // textRoom
             // 
             this.textRoom.Location = new System.Drawing.Point(128, 62);
-            this.textRoom.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textRoom.Margin = new System.Windows.Forms.Padding(4);
             this.textRoom.Name = "textRoom";
             this.textRoom.Size = new System.Drawing.Size(265, 25);
             this.textRoom.TabIndex = 21;
@@ -138,7 +139,7 @@ namespace Infoearth.Framework.SqlWinform.Forms
             // textPersons
             // 
             this.textPersons.Location = new System.Drawing.Point(571, 62);
-            this.textPersons.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textPersons.Margin = new System.Windows.Forms.Padding(4);
             this.textPersons.Name = "textPersons";
             this.textPersons.Size = new System.Drawing.Size(265, 25);
             this.textPersons.TabIndex = 21;
@@ -146,7 +147,7 @@ namespace Infoearth.Framework.SqlWinform.Forms
             // textYear
             // 
             this.textYear.Location = new System.Drawing.Point(128, 105);
-            this.textYear.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textYear.Margin = new System.Windows.Forms.Padding(4);
             this.textYear.Name = "textYear";
             this.textYear.Size = new System.Drawing.Size(265, 25);
             this.textYear.TabIndex = 23;
@@ -163,7 +164,7 @@ namespace Infoearth.Framework.SqlWinform.Forms
             // textMemony
             // 
             this.textMemony.Location = new System.Drawing.Point(571, 105);
-            this.textMemony.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textMemony.Margin = new System.Windows.Forms.Padding(4);
             this.textMemony.Name = "textMemony";
             this.textMemony.Size = new System.Drawing.Size(265, 25);
             this.textMemony.TabIndex = 25;
@@ -190,7 +191,7 @@ namespace Infoearth.Framework.SqlWinform.Forms
             // 
             this.comboGroup.FormattingEnabled = true;
             this.comboGroup.Location = new System.Drawing.Point(128, 152);
-            this.comboGroup.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboGroup.Margin = new System.Windows.Forms.Padding(4);
             this.comboGroup.Name = "comboGroup";
             this.comboGroup.Size = new System.Drawing.Size(708, 23);
             this.comboGroup.TabIndex = 27;

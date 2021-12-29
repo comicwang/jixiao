@@ -65,7 +65,7 @@ namespace Infoearth.Framework.SqlWinform.extention
                     return;
                 var current = datas[e.RowIndex];
 
-                bool success = new DbContext<T>().CurrentDb.Update(current);
+                bool success = new DbContext<T>().Update(current);
 
                 if (actions != null && actions.Length > 0)
                 {
@@ -111,6 +111,7 @@ namespace Infoearth.Framework.SqlWinform.extention
                         column.Width = 15;
                         column.HeaderText = "";
                         column.ReadOnly = true;
+                        column.FillWeight = 50;
                         column.Resizable = DataGridViewTriState.False;
                         column.SortMode = DataGridViewColumnSortMode.Automatic;
                         column.Visible = hidden == null;

@@ -1,7 +1,7 @@
 ﻿
 namespace Infoearth.Framework.SqlWinform.Forms
 {
-    partial class FormPerson
+    partial class FormPersonSummary
     {
         /// <summary>
         /// Required designer variable.
@@ -30,7 +30,7 @@ namespace Infoearth.Framework.SqlWinform.Forms
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormPerson));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormPersonSummary));
             this.label1 = new System.Windows.Forms.Label();
             this.txtName = new System.Windows.Forms.TextBox();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
@@ -45,14 +45,27 @@ namespace Infoearth.Framework.SqlWinform.Forms
             this.txtPhone = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.txtDescription = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.btnOk = new System.Windows.Forms.Button();
+            this.txtAllotedInfo = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.txtRemark = new System.Windows.Forms.TextBox();
+            this.txtCashedInfo = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.txtPersonDelta = new System.Windows.Forms.TextBox();
+            this.txtAllotedTimes = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.txtMainTimes = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.txtMainMoneyVal = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.txtCashedTimes = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.txtCashedMoneyVal = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.txtNotCashedMoneyVal = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
+            this.txtCustomTimes = new System.Windows.Forms.TextBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.txtCustomMoneyVal = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -165,62 +178,40 @@ namespace Infoearth.Framework.SqlWinform.Forms
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(43, 157);
+            this.label7.Location = new System.Drawing.Point(43, 237);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(67, 15);
             this.label7.TabIndex = 14;
-            this.label7.Text = "人员介绍";
+            this.label7.Text = "分配情况";
             // 
-            // txtDescription
+            // txtAllotedInfo
             // 
-            this.txtDescription.Location = new System.Drawing.Point(45, 183);
-            this.txtDescription.Margin = new System.Windows.Forms.Padding(4);
-            this.txtDescription.Multiline = true;
-            this.txtDescription.Name = "txtDescription";
-            this.txtDescription.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtDescription.Size = new System.Drawing.Size(791, 122);
-            this.txtDescription.TabIndex = 15;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(737, 474);
-            this.button1.Margin = new System.Windows.Forms.Padding(4);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(100, 29);
-            this.button1.TabIndex = 16;
-            this.button1.Text = "关闭";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // btnOk
-            // 
-            this.btnOk.Location = new System.Drawing.Point(617, 474);
-            this.btnOk.Margin = new System.Windows.Forms.Padding(4);
-            this.btnOk.Name = "btnOk";
-            this.btnOk.Size = new System.Drawing.Size(100, 29);
-            this.btnOk.TabIndex = 17;
-            this.btnOk.Text = "确定";
-            this.btnOk.UseVisualStyleBackColor = true;
-            this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
+            this.txtAllotedInfo.Location = new System.Drawing.Point(45, 258);
+            this.txtAllotedInfo.Margin = new System.Windows.Forms.Padding(4);
+            this.txtAllotedInfo.Multiline = true;
+            this.txtAllotedInfo.Name = "txtAllotedInfo";
+            this.txtAllotedInfo.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtAllotedInfo.Size = new System.Drawing.Size(791, 102);
+            this.txtAllotedInfo.TabIndex = 15;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(43, 314);
+            this.label8.Location = new System.Drawing.Point(43, 365);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(37, 15);
+            this.label8.Size = new System.Drawing.Size(67, 15);
             this.label8.TabIndex = 18;
-            this.label8.Text = "备注";
+            this.label8.Text = "兑现情况";
             // 
-            // txtRemark
+            // txtCashedInfo
             // 
-            this.txtRemark.Location = new System.Drawing.Point(46, 336);
-            this.txtRemark.Margin = new System.Windows.Forms.Padding(4);
-            this.txtRemark.Multiline = true;
-            this.txtRemark.Name = "txtRemark";
-            this.txtRemark.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtRemark.Size = new System.Drawing.Size(791, 122);
-            this.txtRemark.TabIndex = 19;
+            this.txtCashedInfo.Location = new System.Drawing.Point(46, 389);
+            this.txtCashedInfo.Margin = new System.Windows.Forms.Padding(4);
+            this.txtCashedInfo.Multiline = true;
+            this.txtCashedInfo.Name = "txtCashedInfo";
+            this.txtCashedInfo.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtCashedInfo.Size = new System.Drawing.Size(791, 116);
+            this.txtCashedInfo.TabIndex = 19;
             // 
             // label9
             // 
@@ -239,28 +230,168 @@ namespace Infoearth.Framework.SqlWinform.Forms
             this.txtPersonDelta.Size = new System.Drawing.Size(179, 25);
             this.txtPersonDelta.TabIndex = 21;
             // 
+            // txtAllotedTimes
+            // 
+            this.txtAllotedTimes.Location = new System.Drawing.Point(105, 146);
+            this.txtAllotedTimes.Margin = new System.Windows.Forms.Padding(4);
+            this.txtAllotedTimes.Name = "txtAllotedTimes";
+            this.txtAllotedTimes.Size = new System.Drawing.Size(179, 25);
+            this.txtAllotedTimes.TabIndex = 24;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(-2, 151);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(97, 15);
+            this.label11.TabIndex = 23;
+            this.label11.Text = "已分总次数：";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(286, 151);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(82, 15);
+            this.label12.TabIndex = 23;
+            this.label12.Text = "主要次数：";
+            // 
+            // txtMainTimes
+            // 
+            this.txtMainTimes.Location = new System.Drawing.Point(376, 146);
+            this.txtMainTimes.Margin = new System.Windows.Forms.Padding(4);
+            this.txtMainTimes.Name = "txtMainTimes";
+            this.txtMainTimes.Size = new System.Drawing.Size(179, 25);
+            this.txtMainTimes.TabIndex = 24;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(567, 151);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(82, 15);
+            this.label13.TabIndex = 23;
+            this.label13.Text = "主要总额：";
+            // 
+            // txtMainMoneyVal
+            // 
+            this.txtMainMoneyVal.Location = new System.Drawing.Point(657, 146);
+            this.txtMainMoneyVal.Margin = new System.Windows.Forms.Padding(4);
+            this.txtMainMoneyVal.Name = "txtMainMoneyVal";
+            this.txtMainMoneyVal.Size = new System.Drawing.Size(179, 25);
+            this.txtMainMoneyVal.TabIndex = 24;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(15, 195);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(82, 15);
+            this.label14.TabIndex = 23;
+            this.label14.Text = "已兑次数：";
+            // 
+            // txtCashedTimes
+            // 
+            this.txtCashedTimes.Location = new System.Drawing.Point(105, 190);
+            this.txtCashedTimes.Margin = new System.Windows.Forms.Padding(4);
+            this.txtCashedTimes.Name = "txtCashedTimes";
+            this.txtCashedTimes.Size = new System.Drawing.Size(179, 25);
+            this.txtCashedTimes.TabIndex = 24;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(286, 195);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(82, 15);
+            this.label15.TabIndex = 23;
+            this.label15.Text = "已兑总额：";
+            // 
+            // txtCashedMoneyVal
+            // 
+            this.txtCashedMoneyVal.Location = new System.Drawing.Point(376, 190);
+            this.txtCashedMoneyVal.Margin = new System.Windows.Forms.Padding(4);
+            this.txtCashedMoneyVal.Name = "txtCashedMoneyVal";
+            this.txtCashedMoneyVal.Size = new System.Drawing.Size(179, 25);
+            this.txtCashedMoneyVal.TabIndex = 24;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(567, 195);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(82, 15);
+            this.label16.TabIndex = 23;
+            this.label16.Text = "未兑总额：";
+            // 
+            // txtNotCashedMoneyVal
+            // 
+            this.txtNotCashedMoneyVal.Location = new System.Drawing.Point(657, 190);
+            this.txtNotCashedMoneyVal.Margin = new System.Windows.Forms.Padding(4);
+            this.txtNotCashedMoneyVal.Name = "txtNotCashedMoneyVal";
+            this.txtNotCashedMoneyVal.Size = new System.Drawing.Size(179, 25);
+            this.txtNotCashedMoneyVal.TabIndex = 24;
+            // 
             // label10
             // 
-            this.label10.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.label10.Location = new System.Drawing.Point(304, 107);
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(287, 106);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(544, 43);
-            this.label10.TabIndex = 22;
-            this.label10.Text = "用于绩效分配的绩效系数(数值型)分配公式:所得金额=总普惠金额*本人普惠系数/所有普惠人员系数和";
+            this.label10.Size = new System.Drawing.Size(82, 15);
+            this.label10.TabIndex = 23;
+            this.label10.Text = "普惠次数：";
             // 
-            // FormPerson
+            // txtCustomTimes
+            // 
+            this.txtCustomTimes.Location = new System.Drawing.Point(377, 101);
+            this.txtCustomTimes.Margin = new System.Windows.Forms.Padding(4);
+            this.txtCustomTimes.Name = "txtCustomTimes";
+            this.txtCustomTimes.Size = new System.Drawing.Size(179, 25);
+            this.txtCustomTimes.TabIndex = 24;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(567, 106);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(82, 15);
+            this.label17.TabIndex = 23;
+            this.label17.Text = "普惠总额：";
+            // 
+            // txtCustomMoneyVal
+            // 
+            this.txtCustomMoneyVal.Location = new System.Drawing.Point(657, 101);
+            this.txtCustomMoneyVal.Margin = new System.Windows.Forms.Padding(4);
+            this.txtCustomMoneyVal.Name = "txtCustomMoneyVal";
+            this.txtCustomMoneyVal.Size = new System.Drawing.Size(179, 25);
+            this.txtCustomMoneyVal.TabIndex = 24;
+            // 
+            // FormPersonSummary
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(876, 518);
+            this.Controls.Add(this.txtNotCashedMoneyVal);
+            this.Controls.Add(this.txtCustomMoneyVal);
+            this.Controls.Add(this.txtCustomTimes);
+            this.Controls.Add(this.label17);
+            this.Controls.Add(this.txtMainMoneyVal);
             this.Controls.Add(this.label10);
+            this.Controls.Add(this.label16);
+            this.Controls.Add(this.label13);
+            this.Controls.Add(this.txtCashedMoneyVal);
+            this.Controls.Add(this.label15);
+            this.Controls.Add(this.txtMainTimes);
+            this.Controls.Add(this.txtCashedTimes);
+            this.Controls.Add(this.label12);
+            this.Controls.Add(this.label14);
+            this.Controls.Add(this.txtAllotedTimes);
+            this.Controls.Add(this.label11);
             this.Controls.Add(this.txtPersonDelta);
             this.Controls.Add(this.label9);
-            this.Controls.Add(this.txtRemark);
+            this.Controls.Add(this.txtCashedInfo);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this.btnOk);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.txtDescription);
+            this.Controls.Add(this.txtAllotedInfo);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.txtPhone);
             this.Controls.Add(this.label6);
@@ -279,9 +410,9 @@ namespace Infoearth.Framework.SqlWinform.Forms
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "FormPerson";
+            this.Name = "FormPersonSummary";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "人员信息";
+            this.Text = "人员绩效详情";
             this.Load += new System.EventHandler(this.FormPerson_Load);
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this.ResumeLayout(false);
@@ -304,14 +435,27 @@ namespace Infoearth.Framework.SqlWinform.Forms
         private System.Windows.Forms.TextBox txtPhone;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox txtDescription;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button btnOk;
+        private System.Windows.Forms.TextBox txtAllotedInfo;
         private System.Windows.Forms.BindingSource bindingSource1;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox txtRemark;
+        private System.Windows.Forms.TextBox txtCashedInfo;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox txtPersonDelta;
+        private System.Windows.Forms.TextBox txtAllotedTimes;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.TextBox txtMainTimes;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.TextBox txtMainMoneyVal;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.TextBox txtCashedTimes;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.TextBox txtCashedMoneyVal;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.TextBox txtNotCashedMoneyVal;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox txtCustomTimes;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.TextBox txtCustomMoneyVal;
     }
 }

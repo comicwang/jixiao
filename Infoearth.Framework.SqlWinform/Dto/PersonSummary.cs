@@ -51,6 +51,12 @@ namespace Infoearth.Framework.SqlWinform.Dto
         public string description { get; set; }
 
         /// <summary>
+        /// 普惠系数
+        /// </summary>
+        [SqlSugar.SugarColumn(ColumnDescription = "普惠系数"), GridColumnHidden]
+        public string personDelta { get; set; }
+
+        /// <summary>
         /// 备注
         /// </summary
         [SqlSugar.SugarColumn(ColumnDescription = "备注"), GridColumnHidden]
@@ -64,6 +70,25 @@ namespace Infoearth.Framework.SqlWinform.Dto
 
         [SqlSugar.SugarColumn(ColumnDescription = "已分总额")]
         public string AllotedMoneyVal { get { return AllotedMoney.ToMoney(); } }
+
+        [SqlSugar.SugarColumn(ColumnDescription = "主要次数"), GridColumnHidden]
+        public int MainTimes { get; set; }
+
+        [SqlSugar.SugarColumn(ColumnDescription = "主要总额"), GridColumnHidden]
+        public int MainMoney { get; set; }
+
+        [SqlSugar.SugarColumn(ColumnDescription = "主要总额"), GridColumnHidden]
+        public string MainMoneyVal { get { return MainMoney.ToMoney(); } }
+
+        [SqlSugar.SugarColumn(ColumnDescription = "普惠次数"), GridColumnHidden]
+        public int CustomTimes { get; set; }
+
+        [SqlSugar.SugarColumn(ColumnDescription = "普惠总额"), GridColumnHidden]
+        public int CustomMoney { get; set; }
+
+        [SqlSugar.SugarColumn(ColumnDescription = "普惠总额"), GridColumnHidden]
+        public string CustomMoneyVal { get { return CustomMoney.ToMoney(); } }
+
 
         [SqlSugar.SugarColumn(ColumnDescription = "分配情况")]
         public string AllotedInfo { get; set; }

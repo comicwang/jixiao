@@ -89,5 +89,10 @@ namespace Infoearth.Framework.SqlWinform.Forms
             txtLeft.Text = (all - cashed).ToMoney();
 
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.Cancel;
+        }
     }
 }

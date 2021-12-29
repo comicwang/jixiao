@@ -148,6 +148,12 @@
     <Compile Include="Forms\FormMoney2Person.Designer.cs">
       <DependentUpon>FormMoney2Person.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\FormPersonSummary.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormPersonSummary.Designer.cs">
+      <DependentUpon>FormPersonSummary.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FormPersonSel.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -200,8 +206,12 @@
     <None Include="Properties\DataSources\Infoearth.Framework.SqlWinform.Entity.Project.datasource" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="x64\SQLite.Interop.dll" />
-    <Content Include="x86\SQLite.Interop.dll" />
+    <Content Include="x64\SQLite.Interop.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="x86\SQLite.Interop.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Controls\ControlFristPage.resx">
@@ -230,6 +240,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormMoney2Person.resx">
       <DependentUpon>FormMoney2Person.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormPersonSummary.resx">
+      <DependentUpon>FormPersonSummary.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormPersonSel.resx">
       <DependentUpon>FormPersonSel.cs</DependentUpon>

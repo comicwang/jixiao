@@ -160,82 +160,103 @@ namespace Infoearth.Framework.SqlWinform.Controls
             }
             else
             {
-                int personNum = new Random(Guid.NewGuid().GetHashCode()).Next((int)numericUpDown1.Value, (int)numericUpDown2.Value + 1);
-                /*机选分配规则
-               
-                1.优先选择分配次数少的人员
-                2.不选择本次主要奖金的获取人员
-                3.抽取人员的科室尽量是本项目主要负责部门的人员
-                  
-               */
-                var pCount = _p2pManager.CurrentDb.AsQueryable().Where(t => t.allot == allotEnum.普惠).GroupBy(t => t.peid).Select(t => new PersonSelector() { id = t.peid, times = SqlSugar.SqlFunc.AggregateCount(t), money = SqlSugar.SqlFunc.AggregateSum(t.money) }).ToList().ToDictionary(t => t.id);
-
-                var excludeIds = _p2pManager.CurrentDb.AsQueryable().Where(t => t.prid == project.id && t.allot == allotEnum.主要).Select(t => t.peid).ToList();
-                var person = _personManager.CurrentDb.AsQueryable().Where(t => !excludeIds.Contains(t.id)).Select(t => new PersonSelector() { id = t.id, room = t.room }).ToList();
-
-                foreach (var item in person)
+                while (true)
                 {
-                    if (pCount.ContainsKey(item.id))
-                    {
-                        item.times = pCount[item.id].times;
-                        item.money = pCount[item.id].money;
-                    }
-                }
-                //分组分配次数
-                var pTimes = person.GroupBy(t => t.times).OrderBy(t => t.Key).ToDictionary(t => t.Key);
-                //判断最少次数的人员是否满足本次人数---满足从里面根据下级条件继续筛选；不满足选中里面所有人员，剩余人员从下一级条件中继续筛选
-                int lessTime = pTimes.Min(t => t.Key);
-                int lessCount = pTimes[lessTime].Count();
+                    int personNum = new Random(Guid.NewGuid().GetHashCode()).Next((int)numericUpDown1.Value, (int)numericUpDown2.Value + 1);
+                    /*机选分配规则
 
-                List<PersonSelector> nextSelector = pTimes[lessTime].ToList();
+                    1.优先选择分配次数少的人员
+                    2.不选择本次主要奖金的获取人员
+                    3.抽取人员的科室尽量是本项目主要负责部门的人员
 
-                int index = 1;
-                while (nextSelector.Count < personNum)
-                {
-                    if (index > pTimes.Count - 1)
+                   */
+                    var pCount = _p2pManager.CurrentDb.AsQueryable().Where(t => t.allot == allotEnum.普惠).GroupBy(t => t.peid).Select(t => new PersonSelector() { id = t.peid, times = SqlSugar.SqlFunc.AggregateCount(t), money = SqlSugar.SqlFunc.AggregateSum(t.money) }).ToList().ToDictionary(t => t.id);
+
+                    var excludeIds = _p2pManager.CurrentDb.AsQueryable().Where(t => t.prid == project.id && t.allot == allotEnum.主要).Select(t => t.peid).ToList();
+                    var person = _personManager.CurrentDb.AsQueryable().Where(t => !excludeIds.Contains(t.id)).Select(t => new PersonSelector() { id = t.id, room = t.room, delta = t.persondelta }).ToList();
+
+                    foreach (var item in person)
                     {
-                        MessageBox.Show("人数不满足选取的数量");
-                        continue;
-                    }
-                    foreach (var item in nextSelector)
-                    {
-                        selected.Add(new Person()
+                        if (pCount.ContainsKey(item.id))
                         {
-                            id = item.id
+                            item.times = pCount[item.id].times;
+                            item.money = pCount[item.id].money;
+                        }
+                    }
+                    //分组分配次数
+                    var pTimes = person.GroupBy(t => t.times).OrderBy(t => t.Key).ToDictionary(t => t.Key);
+                    //判断最少次数的人员是否满足本次人数---满足从里面根据下级条件继续筛选；不满足选中里面所有人员，剩余人员从下一级条件中继续筛选
+                    int lessTime = pTimes.Min(t => t.Key);
+                    int lessCount = pTimes[lessTime].Count();
+
+                    List<PersonSelector> nextSelector = pTimes[lessTime].ToList();
+
+                    int index = 1;
+                    while (nextSelector.Count < personNum)
+                    {
+                        if (index > pTimes.Count - 1)
+                        {
+                            MessageBox.Show("人数不满足选取的数量");
+                            continue;
+                        }
+                        foreach (var item in nextSelector)
+                        {
+                            selected.Add(new Person()
+                            {
+                                id = item.id,
+                                persondelta = item.delta
+                            });
+                        }
+                        personNum -= nextSelector.Count;
+                        nextSelector = pTimes[pTimes.Keys.Skip(index).FirstOrDefault()].ToList();
+                        index++;
+                    }
+                    //科室人员筛选
+                    var roomSelect = nextSelector.Where(t =>!string.IsNullOrEmpty(t.room)&&project.room.Contains(t.room)).ToList();
+                    if (roomSelect.Count < personNum)
+                    {
+                        foreach (var item in roomSelect)
+                        {
+                            selected.Add(new Person()
+                            {
+                                id = item.id,
+                                persondelta = item.delta
+                            });
+                        }
+                        personNum -= roomSelect.Count;
+
+                        //剩下的随机挑选其他人员
+                        nextSelector.Where(t => !project.room.Contains(t.room)).ToList().Selector(personNum).ForEach(t =>
+                        {
+                            selected.Add(new Person() { id = t.id, persondelta = t.delta });
+                        }); ;
+                    }
+                    else
+                    {
+                        //科室随机挑选
+                        roomSelect.Selector(personNum).ForEach(t =>
+                        {
+                            selected.Add(new Person() { id = t.id, persondelta = t.delta });
                         });
                     }
-                    personNum -= nextSelector.Count;
-                    nextSelector = pTimes[pTimes.Keys.Skip(index).FirstOrDefault()].ToList();
-                    index++;
-                }
-                //科室人员筛选
-                var roomSelect = nextSelector.Where(t => project.room.Contains(t.room)).ToList();
-                if (roomSelect.Count < personNum)
-                {
-                    foreach (var item in roomSelect)
-                    {
-                        selected.Add(new Person()
-                        {
-                            id = item.id
-                        });
-                    }
-                    personNum -= roomSelect.Count;
 
-                    //剩下的随机挑选其他人员
-                    nextSelector.Where(t => !project.room.Contains(t.room)).ToList().Selector(personNum).ForEach(t =>
+                    //检查金额是否有超过
+                    //计算吃肉最小值，内定最少为65%的0.1
+                    int minMoney = _p2pManager.CurrentDb.AsQueryable().Where(t => t.prid == project.id && t.allot == allotEnum.主要).Min(t => t.money);
+                    if (minMoney < project.memony * (int)allotEnum.主要 / 1000)
+                        minMoney = project.memony * (int)allotEnum.主要 / 1000;
+
+                    //检查系数最大值是否超过
+                    if (tabControl1.SelectedIndex == 1)
                     {
-                        selected.Add(new Person() { id = t.id });
-                    }); ;
-                }
-                else
-                {
-                    //科室随机挑选
-                    roomSelect.Selector(personNum).ForEach(t =>
-                    {
-                        selected.Add(new Person() { id = t.id });
-                    });
+                        int maxMoney = (int)(project.memony * selected.Max(t => t.persondelta) * (int)(allotEnum.普惠) / 100 / selected.Sum(t => t.persondelta));
+                        if (maxMoney > minMoney)
+                            continue;
+                    }
+                    break;
                 }
             }
+
 
             List<Project2Person> p2pResult = new List<Project2Person>();
             if (tabControl1.SelectedIndex == 0)
@@ -261,8 +282,8 @@ namespace Infoearth.Framework.SqlWinform.Controls
                         allotime = DateTime.Now,
                         peid = item.id,
                         prid = project.id,
-                        money = project.memony * (int)(allotEnum.普惠) / 100 / selected.Count,
-                        delta = Math.Round((double)1 / selected.Count, 3)
+                        money = (int)(project.memony * item.persondelta * (int)(allotEnum.普惠) / 100 / selected.Sum(t => t.persondelta)),
+                        delta = item.persondelta
 
                     }); ;
                 }
@@ -285,6 +306,12 @@ namespace Infoearth.Framework.SqlWinform.Controls
                 if (success)
                     IniGrids();
             }
+            //查看绩效
+            else if (e.ColumnIndex == dataGridView1.Columns.Count - 2)
+            {
+                FormPersonSummary formPersonSummary = new FormPersonSummary(int.Parse(dataGridView1["peidDataGridViewTextBoxColumn", e.RowIndex].Value.ToString()));
+                formPersonSummary.Show();
+            }
         }
 
         private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -296,6 +323,12 @@ namespace Infoearth.Framework.SqlWinform.Controls
                 bool success = _p2pManager.CurrentDb.DeleteById(id);
                 if (success)
                     IniGrids();
+            }
+            //查看绩效
+            else if (e.ColumnIndex == dataGridView2.Columns.Count - 2)
+            {
+                FormPersonSummary formPersonSummary = new FormPersonSummary(int.Parse(dataGridView2["peidDataGridViewTextBoxColumn", e.RowIndex].Value.ToString()));
+                formPersonSummary.Show();
             }
         }
 

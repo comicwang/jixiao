@@ -17,4 +17,16 @@ namespace Infoearth.Framework.SqlWinform.Entity
         //[SqlSugar.SugarColumn(IsIgnore = true)]
         //public string grid_view => "查看";
     }
+
+    public class GridViewEntity
+    {
+        [SqlSugar.SugarColumn(IsIgnore = true)]
+        public string grid_edit => "查看";
+
+        [SqlSugar.SugarColumn(IsIgnore = true)]
+        public string grid_del => "删除";
+
+        //[SqlSugar.SugarColumn(IsIgnore = true)]
+        //public string grid_view => "查看";
+    }
 }

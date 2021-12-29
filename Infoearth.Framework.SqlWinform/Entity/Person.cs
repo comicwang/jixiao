@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Infoearth.Framework.SqlWinform.Attributes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -48,10 +49,13 @@ namespace Infoearth.Framework.SqlWinform.Entity
         [SqlSugar.SugarColumn(ColumnDescription = "联系方式")]
         public string phone { get; set; }
 
+        [SqlSugar.SugarColumn(ColumnDescription ="普惠系数")]
+        public double persondelta { get; set; }
+
         /// <summary>
         /// 人员简介
         /// </summary>
-        [SqlSugar.SugarColumn(ColumnDescription = "人员介绍")]
+        [SqlSugar.SugarColumn(ColumnDescription = "人员介绍"), GridColumnHidden]
         public string description { get; set; }
 
         /// <summary>

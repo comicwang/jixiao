@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Infoearth.Framework.SqlWinform.Entity
 {
-    public class Project2Person : GridOprateEntity
+    public class Project2Person : GridViewEntity
     {
         [SqlSugar.SugarColumn(IsPrimaryKey = true, IsIdentity = true, ColumnDescription = "编号")]
         public int id { get; set; }
