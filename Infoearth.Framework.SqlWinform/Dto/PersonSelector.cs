@@ -16,6 +16,6 @@ namespace Infoearth.Framework.SqlWinform.Dto
 
         public int times { get; set; }
 
-        public int money { get; set; }
+        public double money { get; set; }
     }
 }

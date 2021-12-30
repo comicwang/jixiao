@@ -80,9 +80,9 @@ namespace Infoearth.Framework.SqlWinform.Forms
             comboPosition.Text = person.position;
             comboBox2.Tag = person.id;
 
-            int all = _p2pManager.CurrentDb.AsQueryable().Where(t => t.peid == person.id).Sum(t => t.money);
+            double all = _p2pManager.CurrentDb.AsQueryable().Where(t => t.peid == person.id).Sum(t => t.money);
 
-            int cashed = _p2mManager.CurrentDb.AsQueryable().Where(t => t.peid == person.id).Sum(t => t.cashMoney);
+            double cashed = _p2mManager.CurrentDb.AsQueryable().Where(t => t.peid == person.id).Sum(t => t.cashMoney);
 
             txtAll.Text = all.ToMoney();
             txtAlloted.Text = cashed.ToMoney();

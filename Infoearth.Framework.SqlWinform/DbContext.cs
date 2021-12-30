@@ -18,7 +18,7 @@ namespace Infoearth.Framework.SqlWinform
 
             get
             {
-                return $"{Application.StartupPath.Replace(@"\bin\Debug", "")}\\db\\my.sqlite";
+                return $"{Application.StartupPath.Replace(@"\bin\Debug", "")}\\db\\money.sqlite";
             }
         }
 

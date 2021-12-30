@@ -28,7 +28,7 @@ namespace Infoearth.Framework.SqlWinform.Entity
         /// <summary>
         /// 科室
         /// </summary>
-        [SqlSugar.SugarColumn(ColumnDescription = "科室")]
+        [SqlSugar.SugarColumn(ColumnDescription = "领域分类")]
         public string room { get; set; }
 
         /// <summary>
@@ -49,7 +49,10 @@ namespace Infoearth.Framework.SqlWinform.Entity
         [SqlSugar.SugarColumn(ColumnDescription = "联系方式")]
         public string phone { get; set; }
 
-        [SqlSugar.SugarColumn(ColumnDescription ="普惠系数")]
+        [SqlSugar.SugarColumn(ColumnDescription ="工资级别")]
+        public string level { get; set; }
+
+        [SqlSugar.SugarColumn(ColumnDescription ="个人系数")]
         public double persondelta { get; set; }
 
         /// <summary>

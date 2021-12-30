@@ -66,7 +66,7 @@ namespace Infoearth.Framework.SqlWinform.Dto
         public int AllotedTimes { get; set; }
 
         [SqlSugar.SugarColumn(ColumnDescription = "已分总额"),GridColumnHidden]
-        public int AllotedMoney { get; set; }
+        public double AllotedMoney { get; set; }
 
         [SqlSugar.SugarColumn(ColumnDescription = "已分总额")]
         public string AllotedMoneyVal { get { return AllotedMoney.ToMoney(); } }
@@ -75,7 +75,7 @@ namespace Infoearth.Framework.SqlWinform.Dto
         public int MainTimes { get; set; }
 
         [SqlSugar.SugarColumn(ColumnDescription = "主要总额"), GridColumnHidden]
-        public int MainMoney { get; set; }
+        public double MainMoney { get; set; }
 
         [SqlSugar.SugarColumn(ColumnDescription = "主要总额"), GridColumnHidden]
         public string MainMoneyVal { get { return MainMoney.ToMoney(); } }
@@ -84,7 +84,7 @@ namespace Infoearth.Framework.SqlWinform.Dto
         public int CustomTimes { get; set; }
 
         [SqlSugar.SugarColumn(ColumnDescription = "普惠总额"), GridColumnHidden]
-        public int CustomMoney { get; set; }
+        public double CustomMoney { get; set; }
 
         [SqlSugar.SugarColumn(ColumnDescription = "普惠总额"), GridColumnHidden]
         public string CustomMoneyVal { get { return CustomMoney.ToMoney(); } }
@@ -97,13 +97,13 @@ namespace Infoearth.Framework.SqlWinform.Dto
         public int CashedTimes { get; set; }
 
         [SqlSugar.SugarColumn(ColumnDescription = "已兑总额"), GridColumnHidden]
-        public int CashedMoney { get; set; }
+        public double CashedMoney { get; set; }
 
         [SqlSugar.SugarColumn(ColumnDescription = "已兑总额")]
         public string CashedMoneyVal { get { return CashedMoney.ToMoney(); } }
 
         [SqlSugar.SugarColumn(ColumnDescription = "未兑总额"), GridColumnHidden]
-        public int NotCashedMoney { get { return AllotedMoney - CashedMoney; } }
+        public double NotCashedMoney { get { return AllotedMoney - CashedMoney; } }
 
         [SqlSugar.SugarColumn(ColumnDescription = "未兑总额")]
         public string NotCashedMoneyVal { get { return NotCashedMoney.ToMoney(); } }

@@ -30,7 +30,7 @@ namespace Infoearth.Framework.SqlWinform.Dto
         public string persons { get; set; }
 
         [SqlSugar.SugarColumn(ColumnDescription = "绩效总奖金（元）"),GridColumnHidden]
-        public int memony { get; set; }
+        public double memony { get; set; }
 
         [SqlSugar.SugarColumn(ColumnDescription = "绩效总奖金（元）")]
         public string memonyVal { get { return memony.ToMoney(); } }
@@ -49,7 +49,7 @@ namespace Infoearth.Framework.SqlWinform.Dto
 
 
         [SqlSugar.SugarColumn(ColumnDescription = "总分配金额（元）"),GridColumnHidden]
-        public int allotMoney { get; set; }
+        public double allotMoney { get; set; }
 
         [SqlSugar.SugarColumn(ColumnDescription = "总分配金额（元）")]
         public string allotMoneyVal { get { return allotMoney.ToMoney(); } }

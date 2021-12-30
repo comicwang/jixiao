@@ -23,63 +23,63 @@ namespace Infoearth.Framework.SqlWinform.Dto
         /// <summary>
         /// 金额总数
         /// </summary>
-        public int TotalMoneyVal { get; set; }
+        public double TotalMoneyVal { get; set; }
 
         public string TotalMoney { get { return TotalMoneyVal.ToMoney(); } }
 
         /// <summary>
         /// 已分配金额总数
         /// </summary>
-        public int AllotedMoneyVal { get { return _datas == null ? 0 : _datas.Sum(t => t.money); } }
+        public double AllotedMoneyVal { get { return _datas == null ? 0 : _datas.Sum(t => t.money).ToEnd(); } }
 
         public string AllotedMoney { get { return AllotedMoneyVal.ToMoney(); } }
 
         /// <summary>
         /// 剩余金额总数
         /// </summary>
-        public int LeftMoneyVal { get { return _datas == null ? 0 : (TotalMoneyVal - _datas.Sum(t => t.money)); } }
+        public double LeftMoneyVal { get { return _datas == null ? 0 : (TotalMoneyVal - _datas.Sum(t => t.money)).ToEnd(); } }
 
         public string LeftMoney { get { return LeftMoneyVal.ToMoney(); } }
 
         /// <summary>
         /// 主要分配总额
         /// </summary>
-        public int MainMoneyVal { get { return TotalMoneyVal * (((int)allotEnum.主要)) / 100; } }
+        public double MainMoneyVal { get { return (TotalMoneyVal * (((int)allotEnum.主要)) / 100).ToEnd(); } }
 
         public string MainMoney { get { return MainMoneyVal.ToMoney(); } }
 
         /// <summary>
         /// 主要总额已分配数
         /// </summary>
-        public int MainAllotedVal { get { return _datas == null ? 0 : _datas.Where(t => t.allot == allotEnum.主要).Sum(t => t.money); } }
+        public double MainAllotedVal { get { return _datas == null ? 0 : _datas.Where(t => t.allot == allotEnum.主要).Sum(t => t.money).ToEnd(); } }
 
         public string MainAlloted { get { return MainAllotedVal.ToMoney(); } }
 
         /// <summary>
         /// 主要总额未分配数
         /// </summary>
-        public int MainLeftVal { get { return MainMoneyVal - MainAllotedVal; } }
+        public double MainLeftVal { get { return MainMoneyVal - MainAllotedVal; } }
 
         public string MainLeft { get { return MainLeftVal.ToMoney(); } }
 
         /// <summary>
         /// 普惠总金额
         /// </summary>
-        public int CustomMoneyVal { get { return TotalMoneyVal * (((int)allotEnum.普惠)) / 100; } }
+        public double CustomMoneyVal { get { return (TotalMoneyVal * (((int)allotEnum.普惠)) / 100).ToEnd(); } }
 
         public string CustomMoney { get { return CustomMoneyVal.ToMoney(); } }
 
         /// <summary>
         /// 普惠已分配额
         /// </summary>
-        public int CustomAllotedVal { get { return _datas == null ? 0 : _datas.Where(t => t.allot == allotEnum.普惠).Sum(t => t.money); } }
+        public double CustomAllotedVal { get { return _datas == null ? 0 : _datas.Where(t => t.allot == allotEnum.普惠).Sum(t => t.money).ToEnd(); } }
 
         public string CustomAlloted { get { return CustomAllotedVal.ToMoney(); } }
 
         /// <summary>
         /// 普惠未分配额度
         /// </summary>
-        public int CustomLeftVal { get { return CustomMoneyVal - CustomAllotedVal; } }
+        public double CustomLeftVal { get { return CustomMoneyVal - CustomAllotedVal; } }
 
         public string CustomLeft { get { return CustomLeftVal.ToMoney(); } }
     }

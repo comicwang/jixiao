@@ -116,7 +116,7 @@ namespace Infoearth.Framework.SqlWinform
                             double tmp = 0;
                             bool success = double.TryParse(item[column]?.ToString(), out tmp);
                             if (success)
-                                prop.SetValue(temp, tmp);
+                                prop.SetValue(temp,Math.Round(tmp,2));
                         }
                         else if (prop.PropertyType == typeof(string))
                             prop.SetValue(temp, item[column]?.ToString());

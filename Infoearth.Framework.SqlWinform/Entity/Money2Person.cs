@@ -34,7 +34,7 @@ namespace Infoearth.Framework.SqlWinform.Entity
         public DateTime cashTime { get; set; }
 
         [SqlSugar.SugarColumn(ColumnDescription = "兑现金额")]
-        public int cashMoney { get; set; }
+        public double cashMoney { get; set; }
 
         [SqlSugar.SugarColumn(ColumnDescription = "备注")]
         public string remark { get; set; }

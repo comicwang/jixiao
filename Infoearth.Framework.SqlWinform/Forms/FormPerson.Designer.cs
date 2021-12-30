@@ -53,6 +53,8 @@ namespace Infoearth.Framework.SqlWinform.Forms
             this.label9 = new System.Windows.Forms.Label();
             this.txtPersonDelta = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.txtLevel = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -229,7 +231,7 @@ namespace Infoearth.Framework.SqlWinform.Forms
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(82, 15);
             this.label9.TabIndex = 20;
-            this.label9.Text = "普惠系数：";
+            this.label9.Text = "个人系数：";
             // 
             // txtPersonDelta
             // 
@@ -242,11 +244,28 @@ namespace Infoearth.Framework.SqlWinform.Forms
             // label10
             // 
             this.label10.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.label10.Location = new System.Drawing.Point(304, 107);
+            this.label10.Location = new System.Drawing.Point(131, 141);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(544, 43);
+            this.label10.Size = new System.Drawing.Size(705, 29);
             this.label10.TabIndex = 22;
             this.label10.Text = "用于绩效分配的绩效系数(数值型)分配公式:所得金额=总普惠金额*本人普惠系数/所有普惠人员系数和";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(286, 106);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(82, 15);
+            this.label11.TabIndex = 20;
+            this.label11.Text = "工资级别：";
+            // 
+            // txtLevel
+            // 
+            this.txtLevel.Location = new System.Drawing.Point(376, 100);
+            this.txtLevel.Margin = new System.Windows.Forms.Padding(4);
+            this.txtLevel.Name = "txtLevel";
+            this.txtLevel.Size = new System.Drawing.Size(179, 25);
+            this.txtLevel.TabIndex = 21;
             // 
             // FormPerson
             // 
@@ -254,6 +273,8 @@ namespace Infoearth.Framework.SqlWinform.Forms
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(876, 518);
             this.Controls.Add(this.label10);
+            this.Controls.Add(this.txtLevel);
+            this.Controls.Add(this.label11);
             this.Controls.Add(this.txtPersonDelta);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.txtRemark);
@@ -313,5 +334,7 @@ namespace Infoearth.Framework.SqlWinform.Forms
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox txtPersonDelta;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.TextBox txtLevel;
     }
 }

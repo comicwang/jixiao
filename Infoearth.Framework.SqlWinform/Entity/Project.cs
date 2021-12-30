@@ -28,13 +28,13 @@ namespace Infoearth.Framework.SqlWinform.Entity
         public string persons { get; set; }
 
         [SqlSugar.SugarColumn(ColumnDescription ="绩效总奖金（元）")]
-        public int memony { get; set; }
+        public double memony { get; set; }
 
         [SqlSugar.SugarColumn(ColumnDescription ="备注"), GridColumnHidden]
         public string remark { get; set; }
 
         [SqlSugar.SugarColumn(ColumnDescription ="已分配金额（元）"), GridColumnHidden]
-        public int allotMoney { get; set; }
+        public double allotMoney { get; set; }
 
         [SqlSugar.SugarColumn(IsIgnore =true,ColumnDataType ="已全额分配"), GridColumnHidden]
         public bool alloted { get { return allotMoney == memony; } }

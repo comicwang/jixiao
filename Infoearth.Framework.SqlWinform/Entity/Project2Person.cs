@@ -39,7 +39,7 @@ namespace Infoearth.Framework.SqlWinform.Entity
         public double delta { get; set; }
 
         [SqlSugar.SugarColumn(ColumnDescription = "分配金额(元)")]
-        public int money { get; set; }
+        public double money { get; set; }
 
         [SqlSugar.SugarColumn(IsIgnore = true)]
         public Person person { get; set; }

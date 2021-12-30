@@ -173,7 +173,7 @@ namespace Infoearth.Framework.SqlWinform.Controls
                     var pCount = _p2pManager.CurrentDb.AsQueryable().Where(t => t.allot == allotEnum.普惠).GroupBy(t => t.peid).Select(t => new PersonSelector() { id = t.peid, times = SqlSugar.SqlFunc.AggregateCount(t), money = SqlSugar.SqlFunc.AggregateSum(t.money) }).ToList().ToDictionary(t => t.id);
 
                     var excludeIds = _p2pManager.CurrentDb.AsQueryable().Where(t => t.prid == project.id && t.allot == allotEnum.主要).Select(t => t.peid).ToList();
-                    var person = _personManager.CurrentDb.AsQueryable().Where(t => !excludeIds.Contains(t.id)).Select(t => new PersonSelector() { id = t.id, room = t.room, delta = t.persondelta }).ToList();
+                    var person = _personManager.CurrentDb.AsQueryable().Where(t => t.room != "不分配" && t.persondelta > 0).Where(t => !excludeIds.Contains(t.id)).Select(t => new PersonSelector() { id = t.id, room = t.room, delta = t.persondelta }).ToList();
 
                     foreach (var item in person)
                     {
@@ -212,7 +212,7 @@ namespace Infoearth.Framework.SqlWinform.Controls
                         index++;
                     }
                     //科室人员筛选
-                    var roomSelect = nextSelector.Where(t =>!string.IsNullOrEmpty(t.room)&&project.room.Contains(t.room)).ToList();
+                    var roomSelect = nextSelector.Where(t => !string.IsNullOrEmpty(t.room) && project.room.Contains(t.room)).ToList();
                     if (roomSelect.Count < personNum)
                     {
                         foreach (var item in roomSelect)
@@ -242,15 +242,20 @@ namespace Infoearth.Framework.SqlWinform.Controls
 
                     //检查金额是否有超过
                     //计算吃肉最小值，内定最少为65%的0.1
-                    int minMoney = _p2pManager.CurrentDb.AsQueryable().Where(t => t.prid == project.id && t.allot == allotEnum.主要).Min(t => t.money);
+                    double minMoney = _p2pManager.CurrentDb.AsQueryable().Where(t => t.prid == project.id && t.allot == allotEnum.主要).Min(t => t.money);
                     if (minMoney < project.memony * (int)allotEnum.主要 / 1000)
                         minMoney = project.memony * (int)allotEnum.主要 / 1000;
 
                     //检查系数最大值是否超过
                     if (tabControl1.SelectedIndex == 1)
                     {
-                        int maxMoney = (int)(project.memony * selected.Max(t => t.persondelta) * (int)(allotEnum.普惠) / 100 / selected.Sum(t => t.persondelta));
+                        double maxMoney = project.memony * selected.Max(t => t.persondelta) * (int)(allotEnum.普惠) / 100 / selected.Sum(t => t.persondelta);
                         if (maxMoney > minMoney)
+                            continue;
+
+                        //检查人员系数是否
+                        bool avanged = selected.Any(t => t.persondelta >= 1 && t.persondelta < 2) && selected.Any(t => t.persondelta >= 2 && t.persondelta < 3) && selected.Any(t => t.persondelta >= 3);
+                        if (avanged == false)
                             continue;
                     }
                     break;
@@ -282,7 +287,7 @@ namespace Infoearth.Framework.SqlWinform.Controls
                         allotime = DateTime.Now,
                         peid = item.id,
                         prid = project.id,
-                        money = (int)(project.memony * item.persondelta * (int)(allotEnum.普惠) / 100 / selected.Sum(t => t.persondelta)),
+                        money =Math.Round(project.memony * item.persondelta * (int)(allotEnum.普惠) / 100 / selected.Sum(t => t.persondelta),2),
                         delta = item.persondelta
 
                     }); ;
@@ -343,7 +348,7 @@ namespace Infoearth.Framework.SqlWinform.Controls
                     return;
                 }
                 var project = bindingSource1.DataSource as Project;
-                dataGridView1["moneyDataGridViewTextBoxColumn", e.RowIndex].Value = del* project.memony * 0.65 ;
+                dataGridView1["moneyDataGridViewTextBoxColumn", e.RowIndex].Value = Math.Round(del * project.memony * 0.65, 2);
             }
         }
     }
