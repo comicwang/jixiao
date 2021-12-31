@@ -37,7 +37,7 @@ namespace Infoearth.Framework.SqlWinform
             }
             catch (Exception ex)
             {
-               
+                MessageBox.Show(ex.Message);
             }
             finally
             {

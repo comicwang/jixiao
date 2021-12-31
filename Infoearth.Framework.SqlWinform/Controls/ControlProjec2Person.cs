@@ -160,6 +160,26 @@ namespace Infoearth.Framework.SqlWinform.Controls
             }
             else
             {
+
+                var pCount = _p2pManager.CurrentDb.AsQueryable().Where(t => t.allot == allotEnum.普惠).GroupBy(t => t.peid).Select(t => new PersonSelector() { id = t.peid, times = SqlSugar.SqlFunc.AggregateCount(t), money = SqlSugar.SqlFunc.AggregateSum(t.money) }).ToList().ToDictionary(t => t.id);
+
+                var excludeIds = _p2pManager.CurrentDb.AsQueryable().Where(t => t.prid == project.id && t.allot == allotEnum.主要).Select(t => t.peid).ToList();
+                var person = _personManager.CurrentDb.AsQueryable().Where(t => t.room != "不分配" && t.persondelta > 0).Where(t => !excludeIds.Contains(t.id)).Select(t => new PersonSelector() { id = t.id, room = t.room, delta = t.persondelta }).ToList();
+
+                foreach (var item in person)
+                {
+                    if (pCount.ContainsKey(item.id))
+                    {
+                        item.times = pCount[item.id].times;
+                        item.money = pCount[item.id].money;
+                    }
+                }
+
+                //分组分配次数
+                var pTimes = person.GroupBy(t => t.times).OrderBy(t => t.Key).ToDictionary(t => t.Key);
+
+                int selTimes = 1;
+
                 while (true)
                 {
                     int personNum = new Random(Guid.NewGuid().GetHashCode()).Next((int)numericUpDown1.Value, (int)numericUpDown2.Value + 1);
@@ -170,21 +190,8 @@ namespace Infoearth.Framework.SqlWinform.Controls
                     4.普惠人员的最高金额不能高于主要人员的最低金额
                     5.抽取人员的科室尽量是本项目主要负责部门的人员
                    */
-                    var pCount = _p2pManager.CurrentDb.AsQueryable().Where(t => t.allot == allotEnum.普惠).GroupBy(t => t.peid).Select(t => new PersonSelector() { id = t.peid, times = SqlSugar.SqlFunc.AggregateCount(t), money = SqlSugar.SqlFunc.AggregateSum(t.money) }).ToList().ToDictionary(t => t.id);
+                    selected.Clear();
 
-                    var excludeIds = _p2pManager.CurrentDb.AsQueryable().Where(t => t.prid == project.id && t.allot == allotEnum.主要).Select(t => t.peid).ToList();
-                    var person = _personManager.CurrentDb.AsQueryable().Where(t => t.room != "不分配" && t.persondelta > 0).Where(t => !excludeIds.Contains(t.id)).Select(t => new PersonSelector() { id = t.id, room = t.room, delta = t.persondelta }).ToList();
-
-                    foreach (var item in person)
-                    {
-                        if (pCount.ContainsKey(item.id))
-                        {
-                            item.times = pCount[item.id].times;
-                            item.money = pCount[item.id].money;
-                        }
-                    }
-                    //分组分配次数
-                    var pTimes = person.GroupBy(t => t.times).OrderBy(t => t.Key).ToDictionary(t => t.Key);
                     //判断最少次数的人员是否满足本次人数---满足从里面根据下级条件继续筛选；不满足选中里面所有人员，剩余人员从下一级条件中继续筛选
                     int lessTime = pTimes.Min(t => t.Key);
                     int lessCount = pTimes[lessTime].Count();
@@ -245,19 +252,31 @@ namespace Infoearth.Framework.SqlWinform.Controls
                     double minMoney = _p2pManager.CurrentDb.AsQueryable().Where(t => t.prid == project.id && t.allot == allotEnum.主要).Min(t => t.money);
                     if (minMoney < project.memony * (int)allotEnum.主要 / 1000)
                         minMoney = project.memony * (int)allotEnum.主要 / 1000;
-
+                
                     //检查系数最大值是否超过
                     if (tabControl1.SelectedIndex == 1)
                     {
                         double maxMoney = project.memony * selected.Max(t => t.persondelta) * (int)(allotEnum.普惠) / 100 / selected.Sum(t => t.persondelta);
                         if (maxMoney > minMoney)
+                        {
+                            selTimes++;
                             continue;
-
+                        }
                         //检查人员系数是否
                         bool avanged = selected.Any(t => t.persondelta >= 1 && t.persondelta < 2) && selected.Any(t => t.persondelta >= 2 && t.persondelta < 3) && selected.Any(t => t.persondelta >= 3);
                         if (avanged == false)
+                        {
+
+                            if (selTimes > 100)
+                            {
+                                MessageBox.Show("无法满足个人系数均分");
+                                break;
+                            }
+                            selTimes++;
                             continue;
+                        }
                     }
+
                     break;
                 }
             }
