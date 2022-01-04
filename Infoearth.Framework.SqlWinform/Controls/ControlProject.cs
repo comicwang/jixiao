@@ -36,14 +36,16 @@ namespace Infoearth.Framework.SqlWinform.Controls
 
         private void ControlProject_Load(object sender, EventArgs e)
         {
-            dataGridView1.BindDb<Project>(IniDataGrid);
+            dataGridView1.BindDb<Project>(IniDataGrid, false, false, true);
             IniDataGrid();
         }
 
         private void IniDataGrid()
         {
             string keyword = textBox1.Text;
-            var datas = _ProjectManager.CurrentDb.AsQueryable().WhereIF(!string.IsNullOrWhiteSpace(keyword), t => t.name.Contains(keyword)).ToList();           
+            var datas = _ProjectManager.CurrentDb.AsQueryable().WhereIF(!string.IsNullOrWhiteSpace(keyword), t => t.name.Contains(keyword)).ToList();
+            int rowIndex = 1;
+            datas.ForEach(t => { t.Grid_Num = rowIndex; rowIndex++; });
             dataGridView1.DataSource = datas;
         }
 

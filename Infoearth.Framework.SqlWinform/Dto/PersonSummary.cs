@@ -110,5 +110,8 @@ namespace Infoearth.Framework.SqlWinform.Dto
 
         [SqlSugar.SugarColumn(ColumnDescription = "兑现情况")]
         public string CashedInfo { get; set; }
+
+        [SqlSugar.SugarColumn(IsIgnore = true), GridColumnHidden]
+        public int Grid_Num { get; set; }
     }
 }

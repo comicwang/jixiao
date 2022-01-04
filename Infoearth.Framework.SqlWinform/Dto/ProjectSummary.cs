@@ -57,5 +57,8 @@ namespace Infoearth.Framework.SqlWinform.Dto
         [SqlSugar.SugarColumn(ColumnDescription = "已分配完成")]
         public string alloted { get { return allotMoney == memony ? "是" : "否"; } }
 
+        [SqlSugar.SugarColumn(IsIgnore = true), GridColumnHidden]
+        public int Grid_Num { get; set; }
+
     }
 }

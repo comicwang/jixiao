@@ -42,7 +42,7 @@ namespace Infoearth.Framework.SqlWinform.Controls
                     comboBox.BindInput();
                 }
             }
-            dataGridView1.BindDb<ProjectSummary>();
+            dataGridView1.BindDb<ProjectSummary>(null,false,false,true);
             IniGrid();
         }
 
@@ -74,6 +74,8 @@ namespace Infoearth.Framework.SqlWinform.Controls
 
                 result.Add(projectSummary);
             }
+            int rowIndex = 1;
+            result.ForEach(t => { t.Grid_Num = rowIndex; rowIndex++; });
             dataGridView1.DataSource = result;
         }
 

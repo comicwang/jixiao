@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Infoearth.Framework.SqlWinform.Attributes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,9 @@ namespace Infoearth.Framework.SqlWinform.Entity
 {
     public class GridOprateEntity
     {
+        [SqlSugar.SugarColumn(IsIgnore = true), GridColumnHidden]
+        public int Grid_Num { get; set; }
+
         [SqlSugar.SugarColumn(IsIgnore =true)]
         public string grid_edit => "编辑";
 
@@ -20,6 +24,9 @@ namespace Infoearth.Framework.SqlWinform.Entity
 
     public class GridViewEntity
     {
+        [SqlSugar.SugarColumn(IsIgnore = true), GridColumnHidden]
+        public int Grid_Num { get; set; }
+
         [SqlSugar.SugarColumn(IsIgnore = true)]
         public string grid_edit => "查看";
 

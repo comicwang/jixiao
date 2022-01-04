@@ -31,8 +31,8 @@ namespace Infoearth.Framework.SqlWinform.Controls
         {
             this.groupBox1.BindControlDB(this.bindingSource1, typeof(Project));
             IniProjects();
-            this.dataGridView1.BindDb<Project2Person>(IniSummary, SaveProject);
-            this.dataGridView2.BindDb<Project2Person>(IniSummary, SaveProject);
+            this.dataGridView1.BindDb<Project2Person>(true,IniSummary, SaveProject);
+            this.dataGridView2.BindDb<Project2Person>(true,IniSummary, SaveProject);
         }
 
         private void IniProjects()
@@ -62,11 +62,19 @@ namespace Infoearth.Framework.SqlWinform.Controls
             var data1 = new List<Project2Person>();
             var tmp1 = datas.Where(t => t.allot == allotEnum.主要).ToList();
             if (tmp1 != null && tmp1.Count > 0)
+            {
                 data1.AddRange(tmp1);
+                int columnIndex = 1;
+                data1.ForEach(t => { t.Grid_Num = columnIndex; columnIndex++; });
+            }
             var data2 = new List<Project2Person>();
             var tmp2 = datas.Where(t => t.allot == allotEnum.普惠).ToList();
             if (tmp2 != null && tmp2.Count > 0)
+            {
                 data2.AddRange(tmp2);
+                int columnIndex = 1;
+                data2.ForEach(t => { t.Grid_Num = columnIndex; columnIndex++; });
+            }
             dataGridView1.DataSource = tmp1;
             dataGridView2.DataSource = tmp2;
         }
