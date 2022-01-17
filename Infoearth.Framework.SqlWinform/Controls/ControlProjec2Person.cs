@@ -317,7 +317,7 @@ namespace Infoearth.Framework.SqlWinform.Controls
                         money =Math.Round(project.memony * item.persondelta * (int)(allotEnum.普惠) / 100 / selected.Sum(t => t.persondelta),2),
                         delta = item.persondelta
 
-                    }); ;
+                    }); 
                 }
             }
             _p2pManager.CurrentDb.AsDeleteable().Where(t => t.prid == project.id && t.allot == (tabControl1.SelectedIndex == 0 ? allotEnum.主要 : allotEnum.普惠)).ExecuteCommand();
@@ -332,7 +332,7 @@ namespace Infoearth.Framework.SqlWinform.Controls
             //删除
             if (e.ColumnIndex == dataGridView1.Columns.Count - 1)
             {
-                int id = int.Parse(dataGridView1[0, e.RowIndex].Value.ToString());
+                int id = int.Parse(dataGridView1["idDataGridViewTextBoxColumn", e.RowIndex].Value.ToString());
                 bool success = _p2pManager.CurrentDb.DeleteById(id);
                 if (success)
                     IniGrids();
@@ -350,7 +350,7 @@ namespace Infoearth.Framework.SqlWinform.Controls
             //删除
             if (e.ColumnIndex == dataGridView2.Columns.Count - 1)
             {
-                int id = int.Parse(dataGridView2[0, e.RowIndex].Value.ToString());
+                int id = int.Parse(dataGridView2["idDataGridViewTextBoxColumn", e.RowIndex].Value.ToString());
                 bool success = _p2pManager.CurrentDb.DeleteById(id);
                 if (success)
                     IniGrids();
@@ -375,7 +375,7 @@ namespace Infoearth.Framework.SqlWinform.Controls
                     return;
                 }
                 var project = bindingSource1.DataSource as Project;
-                dataGridView1["moneyDataGridViewTextBoxColumn", e.RowIndex].Value = Math.Round(del * project.memony * 0.65, 2);
+                dataGridView1["moneyDataGridViewTextBoxColumn", e.RowIndex].Value = Math.Round(del * project.memony *(int)(allotEnum.主要) / 100, 2);
             }
         }
     }

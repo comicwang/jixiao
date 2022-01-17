@@ -100,7 +100,16 @@ namespace Infoearth.Framework.SqlWinform.extention
                     if (attr == null)
                         continue;
                     if (showNum && item.Name == "id")
+                    {
+                        DataGridViewTextBoxColumn column = new DataGridViewTextBoxColumn();
+                        column.DataPropertyName = item.Name;
+                        column.HeaderText = attr.ColumnDescription;
+                        column.Name = item.Name + "DataGridViewTextBoxColumn";
+                        column.MinimumWidth = 6;
+                        column.Visible = false;
+                        dataGridView.Columns.Add(column);
                         continue;
+                    }
                     GridColumnHidden hidden = item.GetCustomAttribute<GridColumnHidden>();
                     if (!string.IsNullOrEmpty(attr.ColumnDescription))
                     {

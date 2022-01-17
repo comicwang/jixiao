@@ -67,6 +67,7 @@ namespace Infoearth.Framework.SqlWinform.Controls
             this.label18 = new System.Windows.Forms.Label();
             this.lblResult = new System.Windows.Forms.Label();
             this.lblTotalMoney = new System.Windows.Forms.Label();
+            this.bindingSource2 = new System.Windows.Forms.BindingSource(this.components);
             this.lblCustomMoney = new System.Windows.Forms.Label();
             this.lblLeftMoney = new System.Windows.Forms.Label();
             this.lblAllotedMoney = new System.Windows.Forms.Label();
@@ -84,7 +85,6 @@ namespace Infoearth.Framework.SqlWinform.Controls
             this.label10 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.bindingSource2 = new System.Windows.Forms.BindingSource(this.components);
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -483,7 +483,7 @@ namespace Infoearth.Framework.SqlWinform.Controls
             this.tabPage2.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage2.Size = new System.Drawing.Size(1141, 471);
+            this.tabPage2.Size = new System.Drawing.Size(1141, 329);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "其他部分分配";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -497,7 +497,7 @@ namespace Infoearth.Framework.SqlWinform.Controls
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowHeadersWidth = 51;
             this.dataGridView2.RowTemplate.Height = 23;
-            this.dataGridView2.Size = new System.Drawing.Size(1133, 463);
+            this.dataGridView2.Size = new System.Drawing.Size(1133, 321);
             this.dataGridView2.TabIndex = 0;
             this.dataGridView2.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellContentClick);
             // 
@@ -568,6 +568,10 @@ namespace Infoearth.Framework.SqlWinform.Controls
             this.lblTotalMoney.Size = new System.Drawing.Size(63, 15);
             this.lblTotalMoney.TabIndex = 8;
             this.lblTotalMoney.Text = "label17";
+            // 
+            // bindingSource2
+            // 
+            this.bindingSource2.DataSource = typeof(Infoearth.Framework.SqlWinform.Dto.MoneySummary);
             // 
             // lblCustomMoney
             // 
@@ -754,10 +758,6 @@ namespace Infoearth.Framework.SqlWinform.Controls
             this.label7.Size = new System.Drawing.Size(97, 15);
             this.label7.TabIndex = 0;
             this.label7.Text = "主要部分金额";
-            // 
-            // bindingSource2
-            // 
-            this.bindingSource2.DataSource = typeof(Infoearth.Framework.SqlWinform.Dto.MoneySummary);
             // 
             // bindingSource1
             // 

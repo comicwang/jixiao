@@ -51,7 +51,7 @@ namespace Infoearth.Framework.SqlWinform.Entity
 
     public enum allotEnum
     {
-        主要 = 65,
-        普惠 = 35
+        主要 = 60,
+        普惠 = 40
     }
 }

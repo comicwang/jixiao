@@ -66,7 +66,7 @@ namespace Infoearth.Framework.SqlWinform.Controls
             //删除
             if (e.ColumnIndex == dataGridView1.Columns.Count - 1)
             {
-                int id = int.Parse(dataGridView1[0, e.RowIndex].Value.ToString());
+                int id = int.Parse(dataGridView1["idDataGridViewTextBoxColumn", e.RowIndex].Value.ToString());
                 bool success = _m2pManager.CurrentDb.DeleteById(id);
                 if (success)
                     IniDataGrid();
